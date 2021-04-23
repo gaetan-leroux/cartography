@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# editors
+.idea/
+
+# comments text folder
+read_me.txt
+
+# data and R scripts folders we don't want to commit
+data/
+R-QGIS-Precision-Agriculture/
