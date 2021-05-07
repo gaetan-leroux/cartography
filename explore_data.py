@@ -2,9 +2,8 @@ from pathlib import Path
 from osgeo import gdal
 import matplotlib.pyplot as plt
 import geopandas as gpd
+from info import pth_topography, pth_vegetation
 
-pth_topography = Path('data/Topographie')
-pth_vegetation = Path('data/Vegetation')
 pth_ndvi = Path(pth_vegetation, 'Points_vigueur_Greenseeker_NDVI_2011_2019')
 pth_zoning = Path(pth_vegetation, 'Zonage_NDVI_2011_2019_EVI_2020')
 year = 2019
