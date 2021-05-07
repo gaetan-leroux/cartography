@@ -1,7 +1,9 @@
 from pathlib import Path
-
+from osgeo import gdal
+import matplotlib.pyplot as plt
 import geopandas as gpd
 
+pth_topography = Path('data/Topographie')
 pth_vegetation = Path('data/Vegetation')
 pth_ndvi = Path(pth_vegetation, 'Points_vigueur_Greenseeker_NDVI_2011_2019')
 pth_zoning = Path(pth_vegetation, 'Zonage_NDVI_2011_2019_EVI_2020')
@@ -16,4 +18,11 @@ nb_plots = ndvi_shp['code_pg'].unique().__len__()
 for key, group in ndvi_shp.groupby(by=['code_pg', 'nom_var']):
     print(f"{key}: {group['Date'].unique()} ({group['Date'].unique().size} mesure(s))")
 
-print('')
+# display .tiff
+file_name = 'Altitude_TIN_autocad_Rieussec_low_res'
+data_altitude = gdal.Open(f'{pth_topography}/{file_name}.tif')
+data_test = data_altitude.GetRasterBand(1).ReadRaster()
+f = plt.figure()
+plt.imshow(data_altitude.GetRasterBand(1).ReadAsArray())
+plt.savefig(f'{pth_topography}/{file_name}.png')
+plt.show()
